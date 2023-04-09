@@ -6,7 +6,7 @@
 /*   By: truangsi <truangsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 15:42:16 by truangsi          #+#    #+#             */
-/*   Updated: 2023/04/07 20:21:37 by truangsi         ###   ########.fr       */
+/*   Updated: 2023/04/09 15:10:31 by truangsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,13 @@
 #include "libft/libft.h"
 #include "get_next_line/get_next_line.h"
 
+typedef struct s_node
+{
+	float	x;
+	float	y;
+	float	z;
+} t_node;
+
 typedef struct s_rect
 {
 	int		x;
@@ -37,7 +44,7 @@ typedef struct s_rect
 	// int		color;
 } t_rect;
 
-typedef struct s_frac
+typedef struct s_fdf
 {
 	void	*mlx;
 	void	*win_ptr;
@@ -46,7 +53,18 @@ typedef struct s_frac
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-} t_frac;
+
+	int		fd;
+	int		i;
+	int		j;
+	int		k;
+	int		width;
+	int		height;
+	int		cells;
+	char	*tmp;
+	char	**line;
+	t_node	*node;
+} t_fdf;
 
 
 #endif
