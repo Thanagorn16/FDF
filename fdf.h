@@ -6,7 +6,7 @@
 /*   By: truangsi <truangsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 15:42:16 by truangsi          #+#    #+#             */
-/*   Updated: 2023/04/11 13:51:17 by truangsi         ###   ########.fr       */
+/*   Updated: 2023/04/11 16:22:01 by truangsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,7 @@ typedef struct s_fdf
 void	get_height(t_fdf *fdf, char **av);
 void	get_width(t_fdf *fdf, char **av);
 void	store_xyz(t_fdf *fdf, char **av);
+void	render_points(t_fdf *fdf);
+void	render_line(t_fdf *fdf);
 
 #endif
