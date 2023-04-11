@@ -6,7 +6,7 @@
 /*   By: truangsi <truangsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 15:22:58 by truangsi          #+#    #+#             */
-/*   Updated: 2023/04/09 15:16:54 by truangsi         ###   ########.fr       */
+/*   Updated: 2023/04/11 14:11:54 by truangsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,88 +35,52 @@ void	my_mlx_pixel_put(t_fdf *fdf, int x, int y, int color)
 	*(unsigned int *) dst = color;
 }
 
-void	get_height(t_fdf *fdf, char **av)
+void	cal_center(t_fdf *fdf, int *width_point, int *height_point)
 {
-	char	*tmp;
-	int		fd;
+	int	x_map;
+	int	y_map;
+	int	half_x_map;
+	int	half_y_map;
+	int	i;
 
-	fd = open(av[1], O_RDONLY);
-	fdf->height = 0;
-	while (1) // count total line
+	// get width and height of the map
+	x_map = (fdf->width * fdf->x_map_dist) / 2;
+	y_map = (fdf->height * fdf->x_map_dist) / 2; //get the height of the map
+	half_x_map = (x_map - y_map) * cos(ANGLE);
+	half_y_map = (x_map + y_map) * sin(ANGLE);
+	// *width_point = (WINDOW_WIDTH / 2) - x_map; // get starting point for x on the window
+	// *height_point = (WINDOW_HEIGHT / 2) - y_map; // get starting point for y on the window
+	*width_point = (WINDOW_WIDTH / 2) - half_x_map; // get starting point for x on the window
+	*height_point = (WINDOW_HEIGHT / 2) - half_y_map; // get starting point for y on the window
+	// set center
+	i = 0;
+	while (i < fdf->cells)
 	{
-		tmp = get_next_line(fd);
-		if (!tmp)
-			break;
-		fdf->height++;
-		free(tmp);
+		fdf->node[i].x += *width_point;
+		fdf->node[i].y += *height_point;
+		i++;
 	}
-	close(fd);
 }
 
-void	get_width(t_fdf *fdf, char **av)
+void	cal_isometric(float *x, float *y, float z)
 {
-	int		fd;
-	int		loop_count;
+	//to keep the newest value after the cal so it they can be used to cal the next value
+	float	prev_x;
+	float	prev_y;
 
-	fd = open(av[1], O_RDONLY);
-	loop_count = 0;
-	fdf->width = 0;
-	while (1)
-	{
-		fdf->tmp = get_next_line(fd);
-		if (!fdf->tmp)
-			break ;
-		fdf->line = ft_split(fdf->tmp, ' ');
-		fdf->i = 0;
-		while (fdf->line[fdf->i])
-		{
-			if (loop_count == 0)
-				fdf->width++;
-			fdf->i++;
-		}
-		if (fdf->i > fdf->width || fdf->i < fdf->width) // error if i is greater or lesser than width
-			exit (0);
-		loop_count = 1;
-	}
-	close (fd);
+	// calcualte isometric formular
+	prev_x = *x;
+	prev_y = *y;
+	*x = (prev_x - prev_y) * cos(ANGLE);
+	*y = (prev_x + prev_y) * sin(ANGLE) - z;
 }
-
-void	store_xyz(t_fdf *fdf, char **av)
-{
-	int	fd;
-
-	fd = open(av[1], O_RDONLY);
-	fdf->cells = fdf->width * fdf->height;
-	fdf->node = (t_node *)malloc(sizeof(t_node) * fdf->cells);
-	fdf->j = 0;
-	fdf->k = 0;
-	while (fdf->j < fdf->cells)
-	{
-		fdf->tmp = get_next_line(fd);
-		if (!fdf->tmp)
-			break ;
-		fdf->line = ft_split(fdf->tmp, ' ');
-		fdf->i = 0;
-		while (fdf->line[fdf->i])
-		{
-			fdf->node[fdf->j].z = (float)ft_atoi(fdf->line[fdf->i]);
-			fdf->node[fdf->j].x = fdf->i * 10;
-			fdf->node[fdf->j].y = fdf->k;
-			// printf("x:%d   / y:%d\n", (int)fdf.node[j].x, (int)fdf.node[j].y);
-			// printf("z:%d\n", (int) fdf.node[j].z);
-			fdf->j++;
-			fdf->i++;
-		}
-		fdf->k += 10;
-	}
-	close (fd);
-}
-
 int	main(int ac, char **av)
 {
 	t_fdf	fdf;
 	int		i;
-	int		j;
+	// int		j;
+	int		width_point;
+	int		height_point;
 
 	(void) ac;
 	get_height(&fdf, av);
@@ -133,9 +97,23 @@ int	main(int ac, char **av)
 	fdf.img = mlx_new_image(fdf.mlx, 1000, 1080);
 	fdf.addr = mlx_get_data_addr(fdf.img, &fdf.bits_per_pixel, &fdf.line_length, &fdf.endian);
 
+	i = 0;
+	while (i < fdf.cells)
+	{
+		cal_isometric(&fdf.node[i].x, &fdf.node[i].y, fdf.node[i].z);
+		i++;
+	}
+	// cal_center
+	cal_center(&fdf, &width_point, &height_point);
+	// set isometric
+	// i = 0;
+	// while (i < fdf.cells)
+	// {
+	// 	cal_isometric(&fdf.node[i].x, &fdf.node[i].y, fdf.node[i].z);
+	// 	i++;
+	// }
 	// put pixel
 	i = 0;
-	j = 0;
 	while (i < fdf.cells)
 	{
 		my_mlx_pixel_put(&fdf, fdf.node[i].x, fdf.node[i].y, WHITE);

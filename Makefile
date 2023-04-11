@@ -6,7 +6,7 @@
 #    By: truangsi <truangsi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/02 13:29:28 by truangsi          #+#    #+#              #
-#    Updated: 2023/04/07 12:09:22 by truangsi         ###   ########.fr        #
+#    Updated: 2023/04/11 13:34:13 by truangsi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ LIBFT_SRCS = ft_strlen.c ft_split.c ft_atoi.c
 
 GNL_SRCS = get_next_line.c get_next_line_utils.c
 
-FDF_SRCS = fdf.c
+FDF_SRCS = fdf.c create_node.c
 
 SRCS = $(FDF_SRCS) \
 						$(addprefix $(LIBFT_PATH), $(LIBFT_SRCS)) \

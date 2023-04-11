@@ -6,7 +6,7 @@
 /*   By: truangsi <truangsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 15:42:16 by truangsi          #+#    #+#             */
-/*   Updated: 2023/04/09 15:10:31 by truangsi         ###   ########.fr       */
+/*   Updated: 2023/04/11 13:51:17 by truangsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@
 #define BLUE 0x00002E95
 #define GREY 0x007E8C93
 #define WHITE 0x00FFFFFF
+#define ANGLE 0.523599
 
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <mlx.h>
 #include <fcntl.h>
+#include <math.h>
 #include "key.h"
 #include "libft/libft.h"
 #include "get_next_line/get_next_line.h"
@@ -61,10 +63,15 @@ typedef struct s_fdf
 	int		width;
 	int		height;
 	int		cells;
+	int		x_map_dist;
+	int		y_map_dist;
 	char	*tmp;
 	char	**line;
 	t_node	*node;
 } t_fdf;
 
+void	get_height(t_fdf *fdf, char **av);
+void	get_width(t_fdf *fdf, char **av);
+void	store_xyz(t_fdf *fdf, char **av);
 
 #endif
