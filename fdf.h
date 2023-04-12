@@ -6,7 +6,7 @@
 /*   By: truangsi <truangsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 15:42:16 by truangsi          #+#    #+#             */
-/*   Updated: 2023/04/11 16:22:01 by truangsi         ###   ########.fr       */
+/*   Updated: 2023/04/12 15:24:03 by truangsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_node
 	float	x;
 	float	y;
 	float	z;
+	int		color;
 } t_node;
 
 typedef struct s_rect
@@ -73,7 +74,9 @@ typedef struct s_fdf
 void	get_height(t_fdf *fdf, char **av);
 void	get_width(t_fdf *fdf, char **av);
 void	store_xyz(t_fdf *fdf, char **av);
-void	render_points(t_fdf *fdf);
-void	render_line(t_fdf *fdf);
+void	my_mlx_pixel_put(t_fdf *fdf, int x, int y, int color);
+void	draw_points(t_fdf *fdf);
+void	draw_lines(t_fdf *fdf);
+void	cal_dda(t_fdf *fdf, float x1, float x2, float y1, float y2);
 
 #endif

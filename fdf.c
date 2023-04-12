@@ -6,7 +6,7 @@
 /*   By: truangsi <truangsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 15:22:58 by truangsi          #+#    #+#             */
-/*   Updated: 2023/04/11 16:21:49 by truangsi         ###   ########.fr       */
+/*   Updated: 2023/04/12 15:15:26 by truangsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,8 @@ int	main(int ac, char **av)
 	// cal_center & cal_isomatric
 	cal_center(&fdf, &width_point, &height_point);
 	// put pixel
-	render_points(&fdf);
-	render_line(&fdf);
+	draw_points(&fdf);
+	draw_lines(&fdf);
 
 	mlx_put_image_to_window(fdf.mlx, fdf.win_ptr, fdf.img, 0, 0);
 

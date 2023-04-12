@@ -46,9 +46,43 @@ void	get_width(t_fdf *fdf, char **av)
 	close (fd);
 }
 
+int	double_arr_len(char **arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i])
+		i++;
+	return (i);
+}
+
+int	htoi(char *hex)
+{
+	int	y;
+	int	dec;
+	int	x;
+	int	i;
+
+	y = 0;
+	dec = 0;
+	i = ft_strlen(hex) - 1;
+	while (i >= 0)
+	{
+		if (hex[i] >= '0' && hex[i] <= '9')
+			x = hex[i] - '0';
+		else
+			x = hex[i] - 'A' + 10;
+		dec = dec + x * pow(16, y++); //convert hex to int
+		i--;
+	}
+	return (dec);
+}
+
 void	store_xyz(t_fdf *fdf, char **av)
 {
 	int	fd;
+	char	**arr;
+	// int	dec;
 
 	fd = open(av[1], O_RDONLY);
 	fdf->cells = fdf->width * fdf->height;
@@ -65,17 +99,30 @@ void	store_xyz(t_fdf *fdf, char **av)
 		fdf->i = 0;
 		while (fdf->line[fdf->i])
 		{
-			fdf->node[fdf->j].z = (float)ft_atoi(fdf->line[fdf->i]);
+			arr = ft_split(fdf->line[fdf->i], ',');
+			if (double_arr_len(arr) > 1) //if color exists
+			{
+				fdf->node[fdf->j].z = (float)ft_atoi(arr[0]); //store map
+				fdf->node[fdf->j].color = htoi(arr[1] + 2); //stor color
+			}
+			else
+			{
+				fdf->node[fdf->j].z = (float)ft_atoi(arr[0]);
+				fdf->node[fdf->j].color = 16777215; //store white
+			}
+
+			// fdf->node[fdf->j].z = (float)ft_atoi(fdf->line[fdf->i]); // keep the actual value after split and atoi
 			fdf->node[fdf->j].x = fdf->i * fdf->x_map_dist;
 			fdf->node[fdf->j].y = fdf->k * fdf->x_map_dist;
-			// printf("x:%d   / y:%d\n", (int)fdf.node[j].x, (int)fdf.node[j].y);
-			// printf("z:%d\n", (int) fdf.node[j].z);
+			// printf("x:%d   / y:%d\n", (int)fdf->node[fdf->j].x, (int)fdf->node[fdf->j].y);
+			// printf("z:%d\n", (int) fdf->node[fdf->j].z);
+			// printf("z:%d\n", (int) fdf->node[fdf->j].color);
 			fdf->j++;
 			fdf->i++;
 		}
-		// fdf->k += 10;
 		fdf->k++;
 	}
+	// exit(0);
 	// printf("k%d", fdf->k);
 	close (fd);
 }
