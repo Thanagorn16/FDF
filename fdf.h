@@ -6,7 +6,7 @@
 /*   By: truangsi <truangsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 15:42:16 by truangsi          #+#    #+#             */
-/*   Updated: 2023/04/13 16:44:03 by truangsi         ###   ########.fr       */
+/*   Updated: 2023/04/14 14:08:24 by truangsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ typedef struct s_node
 	float	x;
 	float	y;
 	float	z;
-	int		color;
+	// int		color;
+	long long		color;
 } t_node;
 
 // typedef struct s_rect

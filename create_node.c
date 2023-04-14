@@ -56,26 +56,50 @@ int	double_arr_len(char **arr)
 	return (i);
 }
 
-int	htoi(char *hex)
+int	n_strlen(char *str)
 {
-	int	y;
-	int	dec;
-	int	x;
 	int	i;
 
-	y = 0;
-	dec = 0;
-	i = ft_strlen(hex) - 1;
+	i = 0;
+	while (str[i] && str[i] != '\n')
+		i++;
+	return (i);
+}
+
+int	htoi(char *hex)
+{
+	long long	decimal;
+	long long	base;
+	int			i;
+	int			length;
+	// int			value;
+
+	length = n_strlen(hex);
+	i = length - 1;
+	base = 1;
+	decimal = 0;
 	while (i >= 0)
 	{
+		// printf("hey\n");
 		if (hex[i] >= '0' && hex[i] <= '9')
-			x = hex[i] - '0';
-		else
-			x = hex[i] - 'A' + 10;
-		dec = dec + x * pow(16, y++); //convert hex to int
+		{
+			decimal += (hex[i] - 48) * base;
+			base *= 16;
+		}
+		else if (hex[i] >= 'A' && hex[i] <= 'F')
+		{
+			decimal += (hex[i] - 55) * base;
+			base *= 16;
+		}
+		else if (hex[i] >= 'a' && hex[i] <= 'f')
+		{
+			decimal += (hex[i] - 87) * base;
+			base *= 16;
+		}
 		i--;
 	}
-	return (dec);
+	// printf("dec:%lld\n", decimal);
+	return (decimal);
 }
 
 void	store_xyz(t_fdf *fdf, char **av)
@@ -103,6 +127,7 @@ void	store_xyz(t_fdf *fdf, char **av)
 			if (double_arr_len(arr) > 1) //if color exists
 			{
 				fdf->node[fdf->j].z = (float)ft_atoi(arr[0]); //store map
+				// printf("arr:%s\n", arr[1]);
 				fdf->node[fdf->j].color = htoi(arr[1] + 2); //stor color
 			}
 			else
@@ -117,13 +142,14 @@ void	store_xyz(t_fdf *fdf, char **av)
 			// printf("x:%d   / y:%d\n", (int)fdf->node[fdf->j].x, (int)fdf->node[fdf->j].y);
 			// printf("i:%d\n", fdf->i);
 			// printf("z:%d\n", (int) fdf->node[fdf->j].z);
-			// printf("color:%d\n", (int) fdf->node[fdf->j].color);
+			// printf("color:%lld\n", fdf->node[fdf->j].color);
+			// printf("---------------\n");
 			fdf->j++;
 			fdf->i++;
 		}
 		fdf->k++;
 	}
-	// exit(0);
 	// printf("k%d", fdf->k);
+	// exit(0);
 	close (fd);
 }
