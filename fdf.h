@@ -6,7 +6,7 @@
 /*   By: truangsi <truangsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 15:42:16 by truangsi          #+#    #+#             */
-/*   Updated: 2023/04/14 14:08:24 by truangsi         ###   ########.fr       */
+/*   Updated: 2023/04/14 15:40:53 by truangsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 #define BLACK 0x00000000
 #define ANGLE 0.523599
 #define TRANSLATE 20
+#define DIMENSION 1
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -39,15 +40,6 @@ typedef struct s_node
 	// int		color;
 	long long		color;
 } t_node;
-
-// typedef struct s_rect
-// {
-// 	int		x;
-// 	int		y;
-// 	int		width;
-// 	int		height;
-// 	// int		color;
-// } t_rect;
 
 typedef struct s_fdf
 {
@@ -78,10 +70,15 @@ typedef struct s_fdf
 void	get_height(t_fdf *fdf, char **av);
 void	get_width(t_fdf *fdf, char **av);
 void	store_xyz(t_fdf *fdf, char **av);
+void	cal_isometric(float *x, float *y, float z);
+void	cal_center(t_fdf *fdf, int *width_point, int *height_point);
 void	my_mlx_pixel_put(t_fdf *fdf, int x, int y, int color);
 void	draw_points(t_fdf *fdf);
 void	draw_lines(t_fdf *fdf);
 void	cal_dda(t_fdf *fdf, float x1, float x2, float y1, float y2);
 int		hook_events(int key, t_fdf *fdf);
+int		double_arr_len(char **arr);
+int		n_strlen(char *str);
+int		htoi(char *hex);
 
 #endif
