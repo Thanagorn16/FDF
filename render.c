@@ -27,6 +27,7 @@ void	draw_lines(t_fdf *fdf)
 	int	i;
 
 	i = 0;
+	fdf->i = 0;
 	while (i < fdf->cells)
 	{
 		if ((i + 1) % fdf->width != 0) //reaching width(edge) will result in 0
@@ -42,5 +43,6 @@ void	draw_lines(t_fdf *fdf)
 					fdf->node[i].y, fdf->node[i + (fdf->width)].y);
 		}
 		i++;
+		fdf->i++; //colorize the line
 	}
 }

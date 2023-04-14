@@ -6,20 +6,21 @@
 /*   By: truangsi <truangsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 15:42:16 by truangsi          #+#    #+#             */
-/*   Updated: 2023/04/12 15:24:03 by truangsi         ###   ########.fr       */
+/*   Updated: 2023/04/13 16:44:03 by truangsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 #define WINDOW_HEIGHT 1080
-#define WINDOW_WIDTH 1000
+#define WINDOW_WIDTH 1920
 #define RED 0x00FF0000
 #define BLUE 0x00002E95
 #define GREY 0x007E8C93
 #define WHITE 0x00FFFFFF
+#define BLACK 0x00000000
 #define ANGLE 0.523599
-
+#define TRANSLATE 20
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -38,14 +39,14 @@ typedef struct s_node
 	int		color;
 } t_node;
 
-typedef struct s_rect
-{
-	int		x;
-	int		y;
-	int		width;
-	int		height;
-	// int		color;
-} t_rect;
+// typedef struct s_rect
+// {
+// 	int		x;
+// 	int		y;
+// 	int		width;
+// 	int		height;
+// 	// int		color;
+// } t_rect;
 
 typedef struct s_fdf
 {
@@ -66,6 +67,8 @@ typedef struct s_fdf
 	int		cells;
 	int		x_map_dist;
 	int		y_map_dist;
+	int		dst_x;
+	int		dst_y;
 	char	*tmp;
 	char	**line;
 	t_node	*node;
@@ -78,5 +81,6 @@ void	my_mlx_pixel_put(t_fdf *fdf, int x, int y, int color);
 void	draw_points(t_fdf *fdf);
 void	draw_lines(t_fdf *fdf);
 void	cal_dda(t_fdf *fdf, float x1, float x2, float y1, float y2);
+int		hook_events(int key, t_fdf *fdf);
 
 #endif

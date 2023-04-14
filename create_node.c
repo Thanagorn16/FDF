@@ -115,8 +115,9 @@ void	store_xyz(t_fdf *fdf, char **av)
 			fdf->node[fdf->j].x = fdf->i * fdf->x_map_dist;
 			fdf->node[fdf->j].y = fdf->k * fdf->x_map_dist;
 			// printf("x:%d   / y:%d\n", (int)fdf->node[fdf->j].x, (int)fdf->node[fdf->j].y);
+			// printf("i:%d\n", fdf->i);
 			// printf("z:%d\n", (int) fdf->node[fdf->j].z);
-			// printf("z:%d\n", (int) fdf->node[fdf->j].color);
+			// printf("color:%d\n", (int) fdf->node[fdf->j].color);
 			fdf->j++;
 			fdf->i++;
 		}

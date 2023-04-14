@@ -28,10 +28,8 @@ void	cal_dda(t_fdf *fdf, float x1, float x2, float y1, float y2)
 	dy /= max;
 	while ((int)(x1 - x2) || (int)(y1 - y2))
 	{
-		my_mlx_pixel_put(fdf, (int)x1, (int)y1, fdf->node->color);
-		// my_mlx_pixel_put(fdf, (int)x1, (int)y1, RED);
+		my_mlx_pixel_put(fdf, (int)x1, (int)y1, fdf->node[fdf->i].color);
 		x1 += dx;
 		y1 += dy;
-		// break;
 	}
 }

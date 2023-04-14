@@ -6,21 +6,21 @@
 /*   By: truangsi <truangsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 15:22:58 by truangsi          #+#    #+#             */
-/*   Updated: 2023/04/12 15:15:26 by truangsi         ###   ########.fr       */
+/*   Updated: 2023/04/13 16:44:50 by truangsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	handle_keypress(int key, t_fdf *fr)
-{
-	if (key == K_ESC)
-	{
-		mlx_destroy_window(fr->mlx, fr->win_ptr);
-		exit (0);
-	}
-	return (0);
-}
+// int	exit_program(int key, t_fdf *fr)
+// {
+// 	if (key == ESC)
+// 	{
+// 		mlx_destroy_window(fr->mlx, fr->win_ptr);
+// 		exit (0);
+// 	}
+// 	return (0);
+// }
 
 int	encode_rgb(uint8_t red, uint8_t green, uint8_t blue)
 {
@@ -84,22 +84,23 @@ int	main(int ac, char **av)
 	fdf.mlx = mlx_init();
 	if (!fdf.mlx)
 		return (0);
-	fdf.win_ptr = mlx_new_window(fdf.mlx,  1000, 1080, "fdf");
+	fdf.win_ptr = mlx_new_window(fdf.mlx,  WINDOW_WIDTH, WINDOW_HEIGHT, "fdf");
 	if (!fdf.win_ptr)
 		return (0);
 	// create image
-	fdf.img = mlx_new_image(fdf.mlx, 1000, 1080);
+	fdf.img = mlx_new_image(fdf.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	fdf.addr = mlx_get_data_addr(fdf.img, &fdf.bits_per_pixel, &fdf.line_length, &fdf.endian);
 	// cal_center & cal_isomatric
 	cal_center(&fdf, &width_point, &height_point);
 	// put pixel
-	draw_points(&fdf);
+	// draw_points(&fdf);
 	draw_lines(&fdf);
 
 	mlx_put_image_to_window(fdf.mlx, fdf.win_ptr, fdf.img, 0, 0);
 
 	// setup hooks
-	mlx_hook(fdf.win_ptr, 2, 0, &handle_keypress, &fdf);
+	// mlx_hook(fdf.win_ptr, 2, 0, &exit_program, &fdf);
+	mlx_hook(fdf.win_ptr, 2, 0, &hook_events, &fdf);
 
 	mlx_loop(fdf.mlx);
 }
