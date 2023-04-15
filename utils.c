@@ -6,7 +6,7 @@
 /*   By: truangsi <truangsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:13:11 by truangsi          #+#    #+#             */
-/*   Updated: 2023/04/15 14:34:37 by truangsi         ###   ########.fr       */
+/*   Updated: 2023/04/15 15:50:08 by truangsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,12 @@ int	click_exit(t_fdf *fdf)
 	mlx_destroy_window(fdf->mlx, fdf->win_ptr);
 	free(fdf->node);
 	exit (0);
+}
+
+void	free_exit(t_fdf *fdf)
+{
+	if (fdf->node)
+		free(fdf->node);
+	free(fdf->tmp);
+	exit(0);
 }

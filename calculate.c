@@ -6,7 +6,7 @@
 /*   By: truangsi <truangsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:10:54 by truangsi          #+#    #+#             */
-/*   Updated: 2023/04/14 15:40:14 by truangsi         ###   ########.fr       */
+/*   Updated: 2023/04/15 14:40:23 by truangsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 void	cal_isometric(float *x, float *y, float z)
 {
-	//to keep the newest value after the cal so it they can be used to cal the next value
 	float	prev_x;
 	float	prev_y;
 
-	// calcualte isometric formular
 	prev_x = *x;
 	prev_y = *y;
 	*x = (prev_x - prev_y) * cos(ANGLE);
@@ -33,16 +31,12 @@ void	cal_center(t_fdf *fdf, int *width_point, int *height_point)
 	int	half_y_map;
 	int	i;
 
-	// get width and height of the map
 	x_map = (fdf->width * fdf->x_map_dist) / 2;
-	y_map = (fdf->height * fdf->x_map_dist) / 2; //get the height of the map
-	// get center of the map
+	y_map = (fdf->height * fdf->x_map_dist) / 2;
 	half_x_map = (x_map - y_map) * cos(ANGLE);
 	half_y_map = (x_map + y_map) * sin(ANGLE);
-	// get starting point for window
-	*width_point = (WINDOW_WIDTH / 2) - half_x_map; // get starting point for x on the window
-	*height_point = (WINDOW_HEIGHT / 2) - half_y_map; // get starting point for y on the window
-	// set center
+	*width_point = (WINDOW_WIDTH / 2) - half_x_map;
+	*height_point = (WINDOW_HEIGHT / 2) - half_y_map;
 	i = 0;
 	while (i < fdf->cells)
 	{
@@ -72,7 +66,6 @@ void	cal_dda(t_fdf *fdf, float x1, float x2, float y1, float y2)
 	float	dx;
 	float	dy;
 	float	max;
-	// int	i = 0;
 
 	dx = x2 - x1;
 	dy = y2 - y1;
