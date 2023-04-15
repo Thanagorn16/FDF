@@ -39,10 +39,7 @@ int	hook_events(int key, t_fdf *fdf)
 	int	translate;
 
 	if (key == ESC)
-	{
-		mlx_destroy_window(fdf->mlx, fdf->win_ptr);
-		exit (0);
-	}
+		click_exit(fdf);
 	translate = 0;
 	if (key == KW || key == UP)
 		fdf->dst_y -= TRANSLATE;

@@ -6,6 +6,8 @@ void	get_height(t_fdf *fdf, char **av)
 	int		fd;
 
 	fd = open(av[1], O_RDONLY);
+	if (fd < 0)
+		exit(0);
 	fdf->height = 0;
 	while (1) // count total line
 	{
@@ -24,6 +26,8 @@ void	get_width(t_fdf *fdf, char **av)
 	int		loop_count;
 
 	fd = open(av[1], O_RDONLY);
+	if (fd < 0)
+		exit(0);
 	loop_count = 0;
 	fdf->width = 0;
 	while (1)
