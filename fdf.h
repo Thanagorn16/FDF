@@ -6,7 +6,7 @@
 /*   By: truangsi <truangsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 15:42:16 by truangsi          #+#    #+#             */
-/*   Updated: 2023/04/15 15:06:48 by truangsi         ###   ########.fr       */
+/*   Updated: 2023/04/15 17:26:50 by truangsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	cal_center(t_fdf *fdf, int *width_point, int *height_point);
 void	my_mlx_pixel_put(t_fdf *fdf, int x, int y, int color);
 void	draw_points(t_fdf *fdf);
 void	draw_lines(t_fdf *fdf);
-void	cal_dda(t_fdf *fdf, float x1, float x2, float y1, float y2);
+void	cal_dda(t_fdf *fdf, t_node start, t_node end);
 void	free_exit(t_fdf *fdf);
 int		click_exit(t_fdf *fdf);
 int		hook_events(int key, t_fdf *fdf);

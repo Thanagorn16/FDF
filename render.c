@@ -30,19 +30,11 @@ void	draw_lines(t_fdf *fdf)
 	fdf->i = 0;
 	while (i < fdf->cells)
 	{
-		if ((i + 1) % fdf->width != 0) //reaching width(edge) will result in 0
-		{
-			// draw horizontal lines
-				cal_dda(fdf, fdf->node[i].x, fdf->node[i + 1].x,
-					fdf->node[i].y, fdf->node[i + 1].y);
-		}
+		if ((i + 1) % fdf->width != 0)
+				cal_dda(fdf, fdf->node[i], fdf->node[i + 1]);
 		if (i < fdf->width * (fdf->height - 1))
-		{
-			// draw vertical lines
-				cal_dda(fdf, fdf->node[i].x, fdf->node[i + (fdf->width)].x,
-					fdf->node[i].y, fdf->node[i + (fdf->width)].y);
-		}
+				cal_dda(fdf, fdf->node[i], fdf->node[i + (fdf->width)]);
 		i++;
-		fdf->i++; //colorize the line
+		fdf->i++;
 	}
 }
