@@ -6,7 +6,7 @@
 /*   By: truangsi <truangsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 12:11:48 by truangsi          #+#    #+#             */
-/*   Updated: 2023/04/18 12:12:28 by truangsi         ###   ########.fr       */
+/*   Updated: 2023/04/18 12:42:56 by truangsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,6 @@ void	my_mlx_pixel_put(t_fdf *fdf, int x, int y, int color)
 		return ;
 	dst = fdf->addr + (y * fdf->line_length + x * (fdf->bits_per_pixel / 8));
 	*(unsigned int *) dst = color;
-}
-
-void	draw_points(t_fdf *fdf)
-{
-	int	i;
-
-	i = 0;
-	while (i < fdf->cells)
-	{
-		my_mlx_pixel_put(fdf, fdf->node[i].x, fdf->node[i].y, WHITE);
-		i++;
-	}
 }
 
 void	draw_lines(t_fdf *fdf)
