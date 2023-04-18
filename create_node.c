@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_node.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: truangsi <truangsi@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/18 12:09:15 by truangsi          #+#    #+#             */
+/*   Updated: 2023/04/18 12:10:05 by truangsi         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fdf.h"
 
 void	get_height(t_fdf *fdf, char **av)
@@ -98,7 +110,7 @@ void	store_xyz(t_fdf *fdf, char **av)
 		if (!fdf->tmp)
 			exit(0);
 		fdf->line = ft_split(fdf->tmp, ' ');
-		if(!fdf->line)
+		if (!fdf->line)
 			free_exit(fdf);
 		save_to_node(fdf);
 		free(fdf->tmp);

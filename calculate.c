@@ -6,7 +6,7 @@
 /*   By: truangsi <truangsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/14 15:10:54 by truangsi          #+#    #+#             */
-/*   Updated: 2023/04/15 17:27:05 by truangsi         ###   ########.fr       */
+/*   Updated: 2023/04/18 12:09:00 by truangsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,10 @@ void	cal_dda(t_fdf *fdf, t_node start, t_node end)
 	max = find_max(cal_abs(dx), cal_abs(dy));
 	dx /= max;
 	dy /= max;
-	while ((int)(start.x - end.x) || (int)(start.y- end.y))
+	while ((int)(start.x - end.x) || (int)(start.y - end.y))
 	{
-		my_mlx_pixel_put(fdf, (int)start.x, (int)start.y, fdf->node[fdf->i].color);
+		my_mlx_pixel_put(fdf, (int)start.x, (int)start.y,
+			fdf->node[fdf->i].color);
 		start.x += dx;
 		start.y += dy;
 	}

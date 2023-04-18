@@ -6,40 +6,39 @@
 /*   By: truangsi <truangsi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 15:42:16 by truangsi          #+#    #+#             */
-/*   Updated: 2023/04/15 17:26:50 by truangsi         ###   ########.fr       */
+/*   Updated: 2023/04/18 12:16:52 by truangsi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
-#define WINDOW_HEIGHT 1080
-#define WINDOW_WIDTH 1920
-#define RED 0x00FF0000
-#define BLUE 0x00002E95
-#define GREY 0x007E8C93
-#define WHITE 0x00FFFFFF
-#define BLACK 0x00000000
-#define ANGLE 0.523599
-#define TRANSLATE 20
-#define DIMENSION 1
+# define WINDOW_HEIGHT 1080
+# define WINDOW_WIDTH 1920
+# define RED 0x00FF0000
+# define BLUE 0x00002E95
+# define GREY 0x007E8C93
+# define WHITE 0x00FFFFFF
+# define BLACK 0x00000000
+# define ANGLE 0.523599
+# define TRANSLATE 20
+# define DIMENSION 1
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <mlx.h>
-#include <fcntl.h>
-#include <math.h>
-#include "key.h"
-#include "libft/libft.h"
-#include "get_next_line/get_next_line.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <mlx.h>
+# include <fcntl.h>
+# include <math.h>
+# include "key.h"
+# include "libft/libft.h"
+# include "get_next_line/get_next_line.h"
 
 typedef struct s_node
 {
-	float	x;
-	float	y;
-	float	z;
-	// int		color;
+	float			x;
+	float			y;
+	float			z;
 	long long		color;
-} t_node;
+}	t_node;
 
 typedef struct s_fdf
 {
@@ -65,7 +64,7 @@ typedef struct s_fdf
 	char	*tmp;
 	char	**line;
 	t_node	*node;
-} t_fdf;
+}	t_fdf;
 
 void	get_height(t_fdf *fdf, char **av);
 void	get_width(t_fdf *fdf, char **av);
