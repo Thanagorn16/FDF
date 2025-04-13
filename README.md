@@ -45,19 +45,63 @@ Handling variable map sizes and memory allocation dynamically
 
 ### 📁 Table of Contents
 
-- [📌 Project Description](#-Project Description]
+- [📌 Project Description](#project-description)  
+- [✨ Features](#features)  
+- [⚙️ Technologies Used](#technologies-used)  
+- [🚧 Challenges Faced](#challenges-faced)  
+- [🔧 Installation](#installation)  
+- [🚀 Usage](#usage)  
+- [🎮 Controls](#controls)  
+- [📸 Examples](#examples)  
 
-- ✨ Features
+--- 
 
-- ⚙️ Technologies Used
+### 🔧 Installation
+#### 📦 Requirements
+- Unix-like system (Linux/macOS)
 
-- 🚧 Challenges Faced
+- ```gcc``` compiler
 
-- 🔧 Installation
+- ```make``` utility
 
-- 🚀 Usage
+- __MiniLibX__ library (comes with 42 environment or install manually)
 
-- 🎮 Controls
+### 🚀 Setup
+```bash
+git clone https://github.com/Thanagorn16/FDF.git
+cd FDF
+make
+```
+This will generate an executable called fdf.
+
+---
+
+### 🚀 Usage
+```bash
+./fdf <map_file.fdf>
+```
+
+### 🧪 Example
+```bash
+./fdf maps/42.fdf
+```
+
+--- 
+
+### 🎮 Controls
+
+| Key              | Action                            |
+|------------------|------------------------------------|
+| ⬅️ ➡️ ⬆️ ⬇️       | Pan the map                        |
+| `+` / `-`         | Zoom in / out                     |
+| `W` / `S`         | Increase / decrease height scale  |
+| `A` / `D`         | Rotate left / right               |
+| `ESC`            | Exit the program                  |
+
+
+
+
+
 
 - 📸 Examples
 
