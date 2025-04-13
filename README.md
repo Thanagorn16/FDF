@@ -45,14 +45,14 @@ Handling variable map sizes and memory allocation dynamically
 
 ### 📁 Table of Contents
 
-- [📌 Project Description](#project-description)  
-- [✨ Features](#features)  
-- [⚙️ Technologies Used](#technologies-used)  
-- [🚧 Challenges Faced](#challenges-faced)  
-- [🔧 Installation](#installation)  
-- [🚀 Usage](#usage)  
-- [🎮 Controls](#controls)  
-- [📸 Examples](#examples)  
+- [📌 Project Description](#-project-description)  
+- [✨ Features](#-features)  
+- [⚙️ Technologies Used](#-technologies-used)  
+- [🚧 Challenges Faced](#-challenges-faced)  
+- [🔧 Installation](#-installation)  
+- [🚀 Usage](#-usage)  
+- [🎮 Controls](#-controls)  
+- [📸 Examples](#-examples)  
 
 --- 
 
