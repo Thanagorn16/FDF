@@ -98,11 +98,3 @@ This will generate an executable called fdf.
 | `A` / `D`         | Rotate left / right               |
 | `ESC`            | Exit the program                  |
 
-
-
-
-
-
-- 📸 Examples
-
-- 📄 License
